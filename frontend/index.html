@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - Student Skill Assessment System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <!-- LEFT SIDE -->
+        <div class="login-left">
+
+            <div class="logo">
+                <div class="logo-icon">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+
+            <div class="login-content">
+
+                <span class="tagline">
+                    ASSESS • ANALYZE • IMPROVE • GROW
+                </span>
+
+                <h1>
+                    Understand your skills.<br>
+                    <span>Build your career.</span>
+                </h1>
+
+                <p class="description">
+                    Take skill-based assessments, discover knowledge gaps,
+                    track your progress and get personalized recommendations
+                    to improve your career readiness.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Automated evaluation</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Skill-gap analysis</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Progress tracking</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Career readiness insights</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="login-right">
+
+            <div class="login-card">
+
+                <!-- TABS -->
+                <div class="login-tabs">
+
+                    <button
+                        type="button"
+                        class="tab active"
+                        id="loginTab">
+                        Login
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tab"
+                        id="registerTab">
+                        Create Account
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     LOGIN FORM
+                ========================== -->
+
+                <div id="loginForm">
+
+                    <h2>Welcome back 👋</h2>
+
+                    <p class="login-subtitle">
+                        Continue your skill journey.
+                    </p>
+
+                    <form id="loginFormElement">
+
+                        <label for="loginEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+
+                        <div class="login-options">
+
+                            <label class="remember">
+                                <input type="checkbox">
+                                Remember me
+                            </label>
+
+                            <a href="#">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="login-button">
+                            Login →
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =========================
+                     CREATE ACCOUNT FORM
+                ========================== -->
+
+                <div id="registerForm" class="hidden">
+
+                    <h2>Create your account</h2>
+
+                    <p class="login-subtitle">
+                        Start your skill assessment journey.
+                    </p>
+
+                    <form id="registerFormElement">
+
+                        <!-- FULL NAME -->
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+
+                        <!-- PHONE NUMBER -->
+                        <label for="phoneNumber">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phoneNumber"
+                            placeholder="Enter your phone number"
+                            required
+                        >
+
+
+                        <!-- EMAIL -->
+                        <label for="registerEmail">
+                            Email Address
+                        </label>
+
+                        <div class="verification-row">
+
+                            <input
+                                type="email"
+                                id="registerEmail"
+                                placeholder="you@example.com"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="sendCodeButton">
+                                Send Code
+                            </button>
+
+                        </div>
+
+
+                        <!-- EMAIL VERIFICATION -->
+                        <label for="verificationCode">
+                            Email Verification Code
+                        </label>
+
+                        <div class="verification-row">
+
+                            <input
+                                type="text"
+                                id="verificationCode"
+                                placeholder="Enter verification code"
+                            >
+
+                            <button
+                                type="button"
+                                id="verifyButton">
+                                Verify
+                            </button>
+
+                        </div>
+
+                        <p
+                            id="verificationMessage"
+                            class="verification-message">
+                        </p>
+
+
+                        <!-- PASSWORD -->
+                        <label for="registerPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Create a password"
+                            required
+                        >
+
+
+                        <!-- CONFIRM PASSWORD -->
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password"
+                            required
+                        >
+
+
+                        <!-- CREATE ACCOUNT -->
+                        <button
+                            type="submit"
+                            class="login-button">
+                            Create Account →
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- DIVIDER -->
+                <div class="divider">
+                    <span>or</span>
+                </div>
+
+
+                <!-- DEMO -->
+                <button
+                    type="button"
+                    class="demo-button">
+                    Explore Demo
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
