@@ -2,17 +2,29 @@ CREATE DATABASE IF NOT EXISTS student_skill_assessment;
 
 USE student_skill_assessment;
 
+-- =========================================
+-- 1. STUDENTS
+-- =========================================
+
 CREATE TABLE students (
     student_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE
 );
 
+-- =========================================
+-- 2. SKILLS
+-- =========================================
+
 CREATE TABLE skills (
     skill_id INT AUTO_INCREMENT PRIMARY KEY,
     skill_name VARCHAR(100) NOT NULL UNIQUE,
     description VARCHAR(255)
 );
+
+-- =========================================
+-- 3. ASSESSMENTS
+-- =========================================
 
 CREATE TABLE assessments (
     assessment_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,8 +33,15 @@ CREATE TABLE assessments (
 
     CONSTRAINT fk_assessment_skill
         FOREIGN KEY (skill_id)
-        REFERENCES skills(skill_id)
+        REFERENCES skills(skill_id),
+
+    CONSTRAINT uq_skill_assessment_name
+        UNIQUE (skill_id, assessment_name)
 );
+
+-- =========================================
+-- 4. QUESTIONS
+-- =========================================
 
 CREATE TABLE questions (
     question_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,8 +55,15 @@ CREATE TABLE questions (
 
     CONSTRAINT fk_question_assessment
         FOREIGN KEY (assessment_id)
-        REFERENCES assessments(assessment_id)
+        REFERENCES assessments(assessment_id),
+
+    CONSTRAINT chk_question_correct_option
+        CHECK (correct_option IN ('A', 'B', 'C', 'D'))
 );
+
+-- =========================================
+-- 5. ASSESSMENT ATTEMPTS
+-- =========================================
 
 CREATE TABLE assessment_attempts (
     attempt_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,6 +81,10 @@ CREATE TABLE assessment_attempts (
         REFERENCES assessments(assessment_id)
 );
 
+-- =========================================
+-- 6. ANSWERS
+-- =========================================
+
 CREATE TABLE answers (
     answer_id INT AUTO_INCREMENT PRIMARY KEY,
     attempt_id INT NOT NULL,
@@ -71,8 +101,15 @@ CREATE TABLE answers (
         REFERENCES questions(question_id),
 
     CONSTRAINT uq_attempt_question
-        UNIQUE (attempt_id, question_id)
+        UNIQUE (attempt_id, question_id),
+
+    CONSTRAINT chk_answer_selected_option
+        CHECK (selected_option IN ('A', 'B', 'C', 'D'))
 );
+
+-- =========================================
+-- 7. RESULTS
+-- =========================================
 
 CREATE TABLE results (
     result_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,5 +121,29 @@ CREATE TABLE results (
 
     CONSTRAINT fk_result_attempt
         FOREIGN KEY (attempt_id)
-        REFERENCES assessment_attempts(attempt_id)
+        REFERENCES assessment_attempts(attempt_id),
+
+    CONSTRAINT chk_result_total_questions
+        CHECK (total_questions >= 0),
+
+    CONSTRAINT chk_result_correct_answers
+        CHECK (
+            correct_answers >= 0
+            AND correct_answers <= total_questions
+        ),
+
+    CONSTRAINT chk_result_score
+        CHECK (score >= 0),
+
+    CONSTRAINT chk_result_percentage
+        CHECK (
+            percentage >= 0
+            AND percentage <= 100
+        )
 );
+
+-- =========================================
+-- VERIFICATION
+-- =========================================
+
+SHOW TABLES;
