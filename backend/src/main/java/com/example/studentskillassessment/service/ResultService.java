@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.example.studentskillassessment.dto.ResultDTO;
 import com.example.studentskillassessment.dto.SkillPerformanceDTO;
+import com.example.studentskillassessment.dto.SkillProficiencyDTO;
 import com.example.studentskillassessment.dto.SkillStrengthDTO;
 import com.example.studentskillassessment.entity.Assessment;
 import com.example.studentskillassessment.entity.AssessmentAnswer;
@@ -39,46 +42,10 @@ public class ResultService {
         this.assessmentAnswerRepository = assessmentAnswerRepository;
     }
 
-    // Create Result
-    public Result createResult(Result result) {
+    // =========================
+    // CALCULATE RESULT
+    // =========================
 
-        if (result.getStudent() == null
-                || result.getStudent().getId() == null) {
-
-            throw new IllegalArgumentException(
-                    "Result must be associated with a student");
-        }
-
-        if (result.getAssessment() == null
-                || result.getAssessment().getId() == null) {
-
-            throw new IllegalArgumentException(
-                    "Result must be associated with an assessment");
-        }
-
-        Student student = studentRepository.findById(
-                result.getStudent().getId()
-        ).orElseThrow(() ->
-                new ResourceNotFoundException(
-                        "Student not found with id: "
-                                + result.getStudent().getId()
-                ));
-
-        Assessment assessment = assessmentRepository.findById(
-                result.getAssessment().getId()
-        ).orElseThrow(() ->
-                new ResourceNotFoundException(
-                        "Assessment not found with id: "
-                                + result.getAssessment().getId()
-                ));
-
-        result.setStudent(student);
-        result.setAssessment(assessment);
-
-        return resultRepository.save(result);
-    }
-
-    // Automatic Result Calculation
     public Result calculateResult(
             Long studentId,
             Long assessmentId) {
@@ -86,29 +53,18 @@ public class ResultService {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Student not found with id: "
-                                        + studentId
-                        ));
+                                "Student not found with id: " + studentId));
 
         Assessment assessment = assessmentRepository.findById(assessmentId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Assessment not found with id: "
-                                        + assessmentId
-                        ));
+                                "Assessment not found with id: " + assessmentId));
 
         List<AssessmentAnswer> answers =
                 assessmentAnswerRepository
                         .findByStudent_IdAndAssessment_Id(
                                 studentId,
-                                assessmentId
-                        );
-
-        if (answers.isEmpty()) {
-            throw new IllegalArgumentException(
-                    "No answers found for this student and assessment"
-            );
-        }
+                                assessmentId);
 
         int totalQuestions = answers.size();
 
@@ -119,10 +75,11 @@ public class ResultService {
         int incorrectAnswers =
                 totalQuestions - correctAnswers;
 
-        int score = correctAnswers;
+        double percentage = totalQuestions == 0
+                ? 0
+                : ((double) correctAnswers / totalQuestions) * 100;
 
-        double percentage =
-                (correctAnswers * 100.0) / totalQuestions;
+        int score = correctAnswers;
 
         Result result = new Result(
                 student,
@@ -137,88 +94,166 @@ public class ResultService {
         return resultRepository.save(result);
     }
 
-    // Skill-wise Performance
+    // =========================
+    // GET RESULT BY ID
+    // =========================
+
+    public Result getResultById(Long id) {
+
+        return resultRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Result not found with id: " + id));
+    }
+
+    // =========================
+    // GET ALL RESULTS
+    // =========================
+
+    public List<Result> getAllResults() {
+
+        return resultRepository.findAll();
+    }
+
+    // =========================
+    // GET RESULTS BY STUDENT
+    // =========================
+
+    public List<Result> getResultsByStudent(Long studentId) {
+
+        return resultRepository.findByStudent_Id(studentId);
+    }
+
+    // =========================
+    // GET RESULTS BY ASSESSMENT
+    // =========================
+
+    public List<Result> getResultsByAssessment(Long assessmentId) {
+
+        return resultRepository.findByAssessment_Id(assessmentId);
+    }
+
+    // =========================
+    // UPDATE RESULT
+    // =========================
+
+    public Result updateResult(
+            Long id,
+            Result updatedResult) {
+
+        Result existingResult = resultRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Result not found with id: " + id));
+
+        existingResult.setScore(updatedResult.getScore());
+        existingResult.setTotalQuestions(
+                updatedResult.getTotalQuestions());
+        existingResult.setCorrectAnswers(
+                updatedResult.getCorrectAnswers());
+        existingResult.setIncorrectAnswers(
+                updatedResult.getIncorrectAnswers());
+        existingResult.setPercentage(
+                updatedResult.getPercentage());
+
+        return resultRepository.save(existingResult);
+    }
+
+    // =========================
+    // DELETE RESULT
+    // =========================
+
+    public void deleteResult(Long id) {
+
+        Result result = resultRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Result not found with id: " + id));
+
+        resultRepository.delete(result);
+    }
+
+    // =========================
+    // CONVERT TO DTO
+    // =========================
+
+    public ResultDTO convertToDTO(Result result) {
+
+        return new ResultDTO(
+                result.getId(),
+                result.getStudent().getId(),
+                result.getAssessment().getId(),
+                result.getScore(),
+                result.getTotalQuestions(),
+                result.getCorrectAnswers(),
+                result.getIncorrectAnswers(),
+                result.getPercentage()
+        );
+    }
+
+    // =========================
+    // SKILL-WISE PERFORMANCE
+    // =========================
+
     public List<SkillPerformanceDTO> calculateSkillPerformance(
             Long studentId,
             Long assessmentId) {
-
-        studentRepository.findById(studentId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Student not found with id: "
-                                        + studentId
-                        ));
-
-        assessmentRepository.findById(assessmentId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Assessment not found with id: "
-                                        + assessmentId
-                        ));
 
         List<AssessmentAnswer> answers =
                 assessmentAnswerRepository
                         .findByStudent_IdAndAssessment_Id(
                                 studentId,
-                                assessmentId
-                        );
+                                assessmentId);
 
-        if (answers.isEmpty()) {
-            throw new IllegalArgumentException(
-                    "No answers found for this student and assessment"
-            );
-        }
-
-        Map<Long, List<AssessmentAnswer>> skillAnswers =
-                new LinkedHashMap<>();
-
-        for (AssessmentAnswer answer : answers) {
-
-            Long skillId = answer.getQuestion()
-                    .getSkill()
-                    .getId();
-
-            skillAnswers
-                    .computeIfAbsent(
-                            skillId,
-                            key -> new ArrayList<>()
-                    )
-                    .add(answer);
-        }
+        Map<Long, List<AssessmentAnswer>> groupedBySkill =
+                answers.stream()
+                        .filter(answer ->
+                                answer.getQuestion() != null &&
+                                answer.getQuestion().getSkill() != null)
+                        .collect(Collectors.groupingBy(
+                                answer ->
+                                        answer.getQuestion()
+                                                .getSkill()
+                                                .getId(),
+                                LinkedHashMap::new,
+                                Collectors.toList()
+                        ));
 
         List<SkillPerformanceDTO> performanceList =
                 new ArrayList<>();
 
         for (Map.Entry<Long, List<AssessmentAnswer>> entry
-                : skillAnswers.entrySet()) {
+                : groupedBySkill.entrySet()) {
 
-            List<AssessmentAnswer> skillAnswerList =
+            Long skillId = entry.getKey();
+
+            List<AssessmentAnswer> skillAnswers =
                     entry.getValue();
 
-            int totalQuestions =
-                    skillAnswerList.size();
-
-            int correctAnswers =
-                    (int) skillAnswerList.stream()
-                            .filter(AssessmentAnswer::isCorrect)
-                            .count();
-
-            int incorrectAnswers =
-                    totalQuestions - correctAnswers;
-
-            double percentage =
-                    (correctAnswers * 100.0)
-                            / totalQuestions;
-
             String skillName =
-                    skillAnswerList.get(0)
+                    skillAnswers.get(0)
                             .getQuestion()
                             .getSkill()
                             .getName();
 
+            int totalQuestions =
+                    skillAnswers.size();
+
+            int correctAnswers = (int) skillAnswers.stream()
+                    .filter(AssessmentAnswer::isCorrect)
+                    .count();
+
+            int incorrectAnswers =
+                    totalQuestions - correctAnswers;
+
+            double percentage = totalQuestions == 0
+                    ? 0
+                    : ((double) correctAnswers
+                            / totalQuestions) * 100;
+
             performanceList.add(
                     new SkillPerformanceDTO(
-                            entry.getKey(),
+                            skillId,
                             skillName,
                             totalQuestions,
                             correctAnswers,
@@ -231,7 +266,10 @@ public class ResultService {
         return performanceList;
     }
 
-    // Strong / Average / Weak Skill Detection
+    // =========================
+    // STRONG / AVERAGE / WEAK
+    // =========================
+
     public List<SkillStrengthDTO> detectSkillStrength(
             Long studentId,
             Long assessmentId) {
@@ -273,70 +311,50 @@ public class ResultService {
         return strengthList;
     }
 
-    // Get All Results
-    public List<Result> getAllResults() {
-        return resultRepository.findAll();
-    }
+    // =========================
+    // PROFICIENCY LEVEL
+    // =========================
 
-    // Get Result By ID
-    public Result getResultById(Long id) {
-
-        return resultRepository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Result not found with id: " + id
-                        ));
-    }
-
-    // Get Results By Student
-    public List<Result> getResultsByStudent(Long studentId) {
-
-        return resultRepository.findByStudent_Id(studentId);
-    }
-
-    // Get Results By Assessment
-    public List<Result> getResultsByAssessment(
+    public List<SkillProficiencyDTO> detectSkillProficiency(
+            Long studentId,
             Long assessmentId) {
 
-        return resultRepository.findByAssessment_Id(assessmentId);
-    }
+        List<SkillPerformanceDTO> performanceList =
+                calculateSkillPerformance(
+                        studentId,
+                        assessmentId
+                );
 
-    // Update Result
-    public Result updateResult(
-            Long id,
-            Result updatedResult) {
+        List<SkillProficiencyDTO> proficiencyList =
+                new ArrayList<>();
 
-        Result existingResult =
-                getResultById(id);
+        for (SkillPerformanceDTO performance : performanceList) {
 
-        existingResult.setScore(
-                updatedResult.getScore()
-        );
+            double percentage =
+                    performance.getPercentage();
 
-        existingResult.setTotalQuestions(
-                updatedResult.getTotalQuestions()
-        );
+            String proficiency;
 
-        existingResult.setCorrectAnswers(
-                updatedResult.getCorrectAnswers()
-        );
+            if (percentage >= 90) {
+                proficiency = "Expert";
+            } else if (percentage >= 75) {
+                proficiency = "Advanced";
+            } else if (percentage >= 50) {
+                proficiency = "Intermediate";
+            } else {
+                proficiency = "Beginner";
+            }
 
-        existingResult.setIncorrectAnswers(
-                updatedResult.getIncorrectAnswers()
-        );
+            proficiencyList.add(
+                    new SkillProficiencyDTO(
+                            performance.getSkillId(),
+                            performance.getSkillName(),
+                            percentage,
+                            proficiency
+                    )
+            );
+        }
 
-        existingResult.setPercentage(
-                updatedResult.getPercentage()
-        );
-
-        return resultRepository.save(existingResult);
-    }
-
-    // Delete Result
-    public void deleteResult(Long id) {
-
-        Result result = getResultById(id);
-
-        resultRepository.delete(result);
+        return proficiencyList;
     }
 }

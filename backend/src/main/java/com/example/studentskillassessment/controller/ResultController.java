@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.studentskillassessment.dto.SkillPerformanceDTO;
+import com.example.studentskillassessment.dto.SkillProficiencyDTO;
 import com.example.studentskillassessment.dto.SkillStrengthDTO;
 import com.example.studentskillassessment.entity.Result;
 import com.example.studentskillassessment.service.ResultService;
@@ -62,6 +63,21 @@ public class ResultController {
 
         return ResponseEntity.ok(
                 resultService.detectSkillStrength(
+                        studentId,
+                        assessmentId
+                )
+        );
+    }
+
+    // Step 13: Skill Proficiency
+    @GetMapping("/skill-proficiency/{studentId}/{assessmentId}")
+    public ResponseEntity<List<SkillProficiencyDTO>>
+    getSkillProficiency(
+            @PathVariable Long studentId,
+            @PathVariable Long assessmentId) {
+
+        return ResponseEntity.ok(
+                resultService.detectSkillProficiency(
                         studentId,
                         assessmentId
                 )
