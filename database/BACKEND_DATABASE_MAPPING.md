@@ -180,9 +180,13 @@ results
 
 Each assessment attempt has one result.
 
+The `attempt_id` column is unique in the `results` table, so an assessment attempt cannot have more than one result.
+
 Relationship:
 
 AssessmentAttempt → Result
+
+One assessment attempt has at most one result.
 
 ---
 
@@ -208,4 +212,32 @@ Assessment
    |
    | 1 : Many
    ↓
-Question
+---
+
+# Database Validation Constraints
+
+The database includes constraints to protect data integrity.
+
+## Assessment
+
+- The combination of `skill_id` and `assessment_name` must be unique.
+- This prevents duplicate assessment names under the same skill.
+
+## Question
+
+- `correct_option` must be one of `A`, `B`, `C`, or `D`.
+
+## Answer
+
+- `selected_option` must be one of `A`, `B`, `C`, or `D`.
+- The combination of `attempt_id` and `question_id` must be unique.
+
+## Result
+
+- `total_questions` cannot be negative.
+- `correct_answers` cannot be negative.
+- `correct_answers` cannot be greater than `total_questions`.
+- `score` cannot be negative.
+- `percentage` must be between `0` and `100`.
+
+These constraints help prevent invalid data from being stored in the database.
