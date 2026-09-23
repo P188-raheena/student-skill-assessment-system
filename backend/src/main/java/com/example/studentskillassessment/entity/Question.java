@@ -1,9 +1,11 @@
-package com.example.demo.entity;
+package com.example.studentskillassessment.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,32 +17,37 @@ public class Question {
     private Long id;
 
     private String questionText;
-
     private String optionA;
-
     private String optionB;
-
     private String optionC;
-
     private String optionD;
-
     private String correctAnswer;
+
+    @ManyToOne
+    @JoinColumn(name = "skill_id")
+    private Skill skill;
 
     public Question() {
     }
 
     public Question(String questionText, String optionA, String optionB,
-                    String optionC, String optionD, String correctAnswer) {
+                     String optionC, String optionD, String correctAnswer,
+                     Skill skill) {
         this.questionText = questionText;
         this.optionA = optionA;
         this.optionB = optionB;
         this.optionC = optionC;
         this.optionD = optionD;
         this.correctAnswer = correctAnswer;
+        this.skill = skill;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getQuestionText() {
@@ -89,5 +96,13 @@ public class Question {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 }
