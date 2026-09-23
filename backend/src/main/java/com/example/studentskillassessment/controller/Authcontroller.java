@@ -1,6 +1,5 @@
 package com.example.studentskillassessment.controller;
 
-import com.example.studentskillassessment.service.EmailService;
 import com.example.studentskillassessment.service.OtpService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,6 @@ public class AuthController {
     @Autowired
     private OtpService otpService;
 
-    @Autowired
-    private EmailService emailService;
-
-
-    // Send OTP
     @PostMapping("/send-otp")
     public ResponseEntity<String> sendOtp(
             @RequestBody Map<String, String> request) {
@@ -33,15 +27,11 @@ public class AuthController {
                     .body("Email is required");
         }
 
-        String otp = otpService.generateOtp(email);
+        otpService.generateOtp(email);
 
-        emailService.sendOtpEmail(email, otp);
-
-        return ResponseEntity.ok("OTP sent successfully");
+        return ResponseEntity.ok("OTP generated successfully");
     }
 
-
-    // Verify OTP
     @PostMapping("/verify-otp")
     public ResponseEntity<String> verifyOtp(
             @RequestBody Map<String, String> request) {
