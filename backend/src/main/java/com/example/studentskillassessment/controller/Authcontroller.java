@@ -1,6 +1,10 @@
 package com.example.studentskillassessment.controller;
 
+<<<<<<< ours
 import java.util.Map;
+=======
+import com.example.studentskillassessment.service.OtpService;
+>>>>>>> theirs
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +24,10 @@ public class AuthController {
     @Autowired
     private OtpService otpService;
 
+<<<<<<< ours
     // Send OTP
+=======
+>>>>>>> theirs
     @PostMapping("/send-otp")
     public ResponseEntity<String> sendOtp(
             @RequestBody Map<String, String> request) {
@@ -32,8 +39,9 @@ public class AuthController {
                     .body("Email is required");
         }
 
-        String otp = otpService.generateOtp(email);
+        otpService.generateOtp(email);
 
+<<<<<<< ours
         // Development mode:
         // OTP is printed in the backend console instead of being emailed.
         System.out.println("OTP for " + email + " : " + otp);
@@ -42,6 +50,11 @@ public class AuthController {
     }
 
     // Verify OTP
+=======
+        return ResponseEntity.ok("OTP generated successfully");
+    }
+
+>>>>>>> theirs
     @PostMapping("/verify-otp")
     public ResponseEntity<String> verifyOtp(
             @RequestBody Map<String, String> request) {
