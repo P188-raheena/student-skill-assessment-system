@@ -1,13 +1,16 @@
 package com.example.studentskillassessment.controller;
 
-import com.example.studentskillassessment.service.EmailService;
-import com.example.studentskillassessment.service.OtpService;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import com.example.studentskillassessment.service.OtpService;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -16,10 +19,6 @@ public class AuthController {
 
     @Autowired
     private OtpService otpService;
-
-    @Autowired
-    private EmailService emailService;
-
 
     // Send OTP
     @PostMapping("/send-otp")
@@ -35,11 +34,12 @@ public class AuthController {
 
         String otp = otpService.generateOtp(email);
 
-        emailService.sendOtpEmail(email, otp);
+        // Development mode:
+        // OTP is printed in the backend console instead of being emailed.
+        System.out.println("OTP for " + email + " : " + otp);
 
-        return ResponseEntity.ok("OTP sent successfully");
+        return ResponseEntity.ok("OTP generated successfully");
     }
-
 
     // Verify OTP
     @PostMapping("/verify-otp")

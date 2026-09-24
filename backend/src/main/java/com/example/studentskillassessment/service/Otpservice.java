@@ -4,12 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Otpservice {
+public class OtpService {
 
     private final Map<String, String> otpStorage = new HashMap<>();
+
+    private final JavaMailSender mailSender;
+
+    public OtpService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     public String generateOtp(String email) {
 
@@ -19,6 +27,26 @@ public class Otpservice {
         );
 
         otpStorage.put(email, otp);
+
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom("studentskillassessment@gmail.com");
+        message.setTo(email);
+        message.setSubject(
+                "Student Skill Assessment - Email Verification OTP"
+        );
+
+        message.setText(
+                "Hello,\n\n" +
+                "Your Student Skill Assessment verification OTP is:\n\n" +
+                otp +
+                "\n\n" +
+                "Please enter this OTP in the application to verify your email.\n\n" +
+                "Regards,\n" +
+                "Student Skill Assessment Team"
+        );
+
+        mailSender.send(message);
 
         return otp;
     }
