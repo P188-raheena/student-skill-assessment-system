@@ -47,7 +47,7 @@ const sendCodeButton =
 const verificationMessage =
     document.getElementById("verificationMessage");
 
-sendCodeButton.addEventListener("click", function () {
+sendCodeButton.addEventListener("click", async function () {
 
     const email =
         document.getElementById("registerEmail").value.trim();
@@ -64,10 +64,49 @@ sendCodeButton.addEventListener("click", function () {
 
     emailVerified = false;
 
-    verificationMessage.textContent =
-        "Verification code sent to your email.";
+    try {
 
-    verificationMessage.style.color = "#16a36a";
+        const response = await fetch(
+            "http://192.168.1.57:8080/api/auth/send-otp",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email: email
+                })
+            }
+        );
+
+        const message = await response.text();
+
+        if (response.ok) {
+
+            verificationMessage.textContent =
+                message;
+
+            verificationMessage.style.color = "#16a36a";
+
+        } else {
+
+            verificationMessage.textContent =
+                message;
+
+            verificationMessage.style.color = "#d9534f";
+        }
+
+    } catch (error) {
+
+        verificationMessage.textContent =
+            "Cannot connect to backend.";
+
+        verificationMessage.style.color = "#d9534f";
+
+        console.error(error);
+    }
 
 });
 
@@ -79,10 +118,23 @@ sendCodeButton.addEventListener("click", function () {
 const verifyButton =
     document.getElementById("verifyButton");
 
-verifyButton.addEventListener("click", function () {
+verifyButton.addEventListener("click", async function () {
+
+    const email =
+        document.getElementById("registerEmail").value.trim();
 
     const code =
         document.getElementById("verificationCode").value.trim();
+
+    if (email === "") {
+
+        verificationMessage.textContent =
+            "Please enter your email address.";
+
+        verificationMessage.style.color = "#d9534f";
+
+        return;
+    }
 
     if (code === "") {
 
@@ -94,19 +146,56 @@ verifyButton.addEventListener("click", function () {
         return;
     }
 
-    /*
-       Temporary frontend verification.
+    try {
 
-       Later your backend friend will replace
-       this with real OTP verification.
-    */
+        const response = await fetch(
+            "http://192.168.1.57:8080/api/auth/verify-otp",
+            {
+                method: "POST",
 
-    emailVerified = true;
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-    verificationMessage.textContent =
-        "Email verified successfully ✓";
+                body: JSON.stringify({
+                    email: email,
+                    otp: code
+                })
+            }
+        );
 
-    verificationMessage.style.color = "#16a36a";
+        const message = await response.text();
+
+        if (response.ok) {
+
+            emailVerified = true;
+
+            verificationMessage.textContent =
+                message + " ✓";
+
+            verificationMessage.style.color = "#16a36a";
+
+        } else {
+
+            emailVerified = false;
+
+            verificationMessage.textContent =
+                message;
+
+            verificationMessage.style.color = "#d9534f";
+        }
+
+    } catch (error) {
+
+        emailVerified = false;
+
+        verificationMessage.textContent =
+            "Cannot connect to backend.";
+
+        verificationMessage.style.color = "#d9534f";
+
+        console.error(error);
+    }
 
 });
 
