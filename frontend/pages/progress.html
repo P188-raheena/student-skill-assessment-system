@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - My Progress</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="progress-page">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+            <div class="student-profile">
+                <span class="profile-icon">👤</span>
+                <span id="studentName">Student</span>
+
+                <button id="dashboardBtn">
+                    Dashboard
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- Main -->
+        <main class="progress-container">
+
+            <!-- Heading -->
+            <section class="progress-heading">
+
+                <p class="small-heading">
+                    PROGRESS & ANALYTICS
+                </p>
+
+                <h1>
+                    Track Your Progress
+                </h1>
+
+                <p>
+                    Monitor your assessment performance and skill development.
+                </p>
+
+            </section>
+
+
+            <!-- Summary -->
+            <section class="progress-summary">
+
+                <div class="progress-stat">
+                    <span>Latest Score</span>
+                    <strong id="latestScore">0%</strong>
+                </div>
+
+                <div class="progress-stat">
+                    <span>Assessments Completed</span>
+                    <strong id="assessmentCount">1</strong>
+                </div>
+
+                <div class="progress-stat">
+                    <span>Skills Assessed</span>
+                    <strong id="skillsCount">0</strong>
+                </div>
+
+            </section>
+
+
+            <!-- Score Overview -->
+            <section class="progress-card">
+
+                <div class="progress-card-header">
+
+                    <div>
+                        <h2>📈 Score Overview</h2>
+
+                        <p>
+                            Your latest assessment performance.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="score-overview">
+
+                    <div class="score-display">
+
+                        <span>Current Score</span>
+
+                        <strong id="currentScore">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="score-message">
+
+                        <h3 id="progressMessage">
+                            Complete an assessment to track your progress.
+                        </h3>
+
+                        <p>
+                            Continue practicing and reassess your skills
+                            regularly to monitor improvement.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Skill Progress -->
+            <section class="progress-card">
+
+                <div class="progress-card-header">
+
+                    <div>
+                        <h2>🧠 Skill Progress</h2>
+
+                        <p>
+                            Current performance across your selected skills.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-progress-list">
+
+                    <div class="progress-skill">
+
+                        <div class="progress-skill-info">
+
+                            <span>Java</span>
+
+                            <strong>70%</strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-value"
+                                style="width: 70%;">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-skill">
+
+                        <div class="progress-skill-info">
+
+                            <span>Data Structures</span>
+
+                            <strong>50%</strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-value"
+                                style="width: 50%;">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-skill">
+
+                        <div class="progress-skill-info">
+
+                            <span>Problem Solving</span>
+
+                            <strong>40%</strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-value"
+                                style="width: 40%;">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Learning Activity -->
+            <section class="progress-card">
+
+                <div class="progress-card-header">
+
+                    <div>
+                        <h2>📚 Learning Activity</h2>
+
+                        <p>
+                            Recommended actions to continue your progress.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-list">
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">✓</span>
+
+                        <div>
+                            <h3>Complete Skill Assessment</h3>
+
+                            <p>
+                                Assessment completed successfully.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">→</span>
+
+                        <div>
+                            <h3>Practice Skill Gaps</h3>
+
+                            <p>
+                                Focus on the areas identified in your
+                                skill gap analysis.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">↻</span>
+
+                        <div>
+                            <h3>Retake Assessment</h3>
+
+                            <p>
+                                Take another assessment after practicing
+                                to measure your improvement.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Actions -->
+            <section class="progress-actions">
+
+                <button
+                    class="secondary-btn"
+                    id="recommendationBtn">
+                    ← Recommendations
+                </button>
+
+                <button
+                    class="primary-btn"
+                    id="assessmentBtn">
+                    Take Assessment Again →
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            <p>
+                SSAS — Assess • Analyze • Improve • Grow
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="../js/progress.js"></script>
+
+</body>
+
+</html>

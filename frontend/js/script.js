@@ -67,7 +67,7 @@ sendCodeButton.addEventListener("click", async function () {
     try {
 
         const response = await fetch(
-            "http://192.168.1.57:8080/api/auth/send-otp",
+            "http://localhost:8080/api/auth/send-otp",
             {
                 method: "POST",
 
@@ -149,7 +149,7 @@ verifyButton.addEventListener("click", async function () {
     try {
 
         const response = await fetch(
-            "http://192.168.1.57:8080/api/auth/verify-otp",
+           "http://localhost:8080/api/auth/verify-otp",
             {
                 method: "POST",
 

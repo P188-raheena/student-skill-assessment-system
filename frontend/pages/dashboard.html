@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSAS - Student Dashboard</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-page">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+            <div class="student-profile">
+                <span class="profile-icon">👤</span>
+                <span id="studentName">Student</span>
+                <button id="logoutBtn">Logout</button>
+            </div>
+
+        </header>
+
+
+        <!-- Main Content -->
+        <main class="dashboard-container">
+
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div>
+                    <p class="small-heading">STUDENT DASHBOARD</p>
+
+                    <h1>
+                        Welcome back, <span id="welcomeName">Student</span> 👋
+                    </h1>
+
+                    <p>
+                        Assess your skills, identify your gaps and build
+                        your career readiness.
+                    </p>
+                </div>
+            </section>
+
+
+            <!-- Overview Cards -->
+            <section class="overview-cards">
+
+                <div class="dashboard-card">
+                    <div class="card-icon">🎯</div>
+
+                    <h3>Career Goal</h3>
+
+                    <p id="careerGoal">
+                        Not selected
+                    </p>
+
+                    <button class="secondary-btn">
+                        Select Career
+                    </button>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="card-icon">🧠</div>
+
+                    <h3>Skills</h3>
+
+                    <p id="skillsCount">
+                        0 Skills Selected
+                    </p>
+
+                    <button class="secondary-btn">
+                        Select Skills
+                    </button>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="card-icon">📊</div>
+
+                    <h3>Assessment Score</h3>
+
+                    <p id="assessmentScore">
+                        Not attempted
+                    </p>
+
+                    <button class="secondary-btn">
+                        View Results
+                    </button>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="card-icon">📈</div>
+
+                    <h3>Progress</h3>
+
+                    <p id="progressValue">
+                        0%
+                    </p>
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                            style="width: 0%;">
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Main Dashboard Sections -->
+            <section class="dashboard-sections">
+
+                <!-- Start Assessment -->
+                <div class="large-card assessment-card">
+
+                    <div class="section-icon">📝</div>
+
+                    <div>
+                        <h2>Start Your Assessment</h2>
+
+                        <p>
+                            Test your technical knowledge and discover
+                            your strengths and skill gaps.
+                        </p>
+
+                        <button
+                            class="primary-btn"
+                            id="startAssessmentBtn">
+                            Start Assessment →
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Actions -->
+                <div class="large-card">
+
+                    <h2>Quick Actions</h2>
+
+                    <div class="quick-actions">
+
+                        <button class="action-btn">
+                            📊
+                            <span>Progress & Analytics</span>
+                        </button>
+
+                        <button class="action-btn">
+                            💡
+                            <span>Recommendations</span>
+                        </button>
+
+                        <button class="action-btn">
+                            💼
+                            <span>Career Matching</span>
+                        </button>
+
+                        <button class="action-btn">
+                            📄
+                            <span>Skill Report</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Skill Progress -->
+            <section class="large-card skill-progress-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Skill Progress</h2>
+
+                        <p>
+                            Track your performance across different skills.
+                        </p>
+                    </div>
+
+                    <button class="secondary-btn">
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <div class="skill-info">
+                        <span>Java</span>
+                        <span>0%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            style="width: 0%;">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <div class="skill-info">
+                        <span>Data Structures</span>
+                        <span>0%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            style="width: 0%;">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <div class="skill-info">
+                        <span>Database</span>
+                        <span>0%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            style="width: 0%;">
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Recommended Section -->
+            <section class="large-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Personalized Recommendations</h2>
+
+                        <p>
+                            Recommendations will appear after your assessment.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">💡</div>
+
+                    <h3>No recommendations yet</h3>
+
+                    <p>
+                        Complete your first assessment to receive
+                        personalized learning recommendations.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>
+                SSAS — Assess • Analyze • Improve • Grow
+            </p>
+        </footer>
+
+    </div>
+
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - Assessment</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="assessment-page">
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="dashboard-header">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    S
+                </div>
+
+                <div>
+
+                    <h2>SSAS</h2>
+
+                    <p>
+                        Student Skill Assessment System
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="student-profile">
+
+                <span class="profile-icon">
+                    👤
+                </span>
+
+                <span id="studentName">
+                    Student
+                </span>
+
+                <button id="dashboardBtn">
+                    Dashboard
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             MAIN
+        ========================== -->
+
+        <main class="assessment-container">
+
+
+            <!-- =========================
+                 ASSESSMENT HEADER
+            ========================== -->
+
+            <section class="assessment-top">
+
+                <div>
+
+                    <p class="small-heading">
+                        SKILL ASSESSMENT
+                    </p>
+
+                    <h1 id="assessmentTitle">
+                        Technical Skills Assessment
+                    </h1>
+
+                    <p>
+                        Answer the questions to evaluate your
+                        current skill level.
+                    </p>
+
+                </div>
+
+
+                <div class="question-progress">
+
+                    <span id="questionNumber">
+                        Question 1 of 10
+                    </span>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="questionProgress"
+                            style="width: 10%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 MCQ ASSESSMENT CARD
+            ========================== -->
+
+            <section class="question-card">
+
+
+                <!-- Question information -->
+
+                <div class="question-header">
+
+                    <span
+                        class="question-skill"
+                        id="questionSkill">
+
+                        Java
+
+                    </span>
+
+
+                    <span
+                        class="difficulty"
+                        id="difficulty">
+
+                        Easy
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- Question -->
+
+                <h2 id="questionText">
+
+                    Which keyword is used to create a class
+                    in Java?
+
+                </h2>
+
+
+
+                <!-- =========================
+                     OPTIONS
+                ========================== -->
+
+                <div
+                    class="options"
+                    id="options">
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="answer"
+                            value="0">
+
+                        <span class="option-letter">
+                            A
+                        </span>
+
+                        <span class="option-text">
+                            class
+                        </span>
+
+                    </label>
+
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="answer"
+                            value="1">
+
+                        <span class="option-letter">
+                            B
+                        </span>
+
+                        <span class="option-text">
+                            create
+                        </span>
+
+                    </label>
+
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="answer"
+                            value="2">
+
+                        <span class="option-letter">
+                            C
+                        </span>
+
+                        <span class="option-text">
+                            new
+                        </span>
+
+                    </label>
+
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="answer"
+                            value="3">
+
+                        <span class="option-letter">
+                            D
+                        </span>
+
+                        <span class="option-text">
+                            object
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- =========================
+                     NAVIGATION
+                ========================== -->
+
+                <div class="assessment-navigation">
+
+
+                    <button
+                        class="secondary-btn"
+                        id="previousBtn"
+                        disabled>
+
+                        ← Previous
+
+                    </button>
+
+
+
+                    <button
+                        class="primary-btn"
+                        id="nextBtn">
+
+                        Next →
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 INSTRUCTIONS
+            ========================== -->
+
+            <section class="assessment-info">
+
+                <div>
+
+                    <strong>
+                        📌 Assessment Instructions
+                    </strong>
+
+
+                    <ul>
+
+                        <li>
+                            Select one answer for each question.
+                        </li>
+
+                        <li>
+                            Answer all questions before submitting.
+                        </li>
+
+                        <li>
+                            Your score will be calculated automatically.
+                        </li>
+
+                        <li>
+                            Your results will be used for
+                            skill-gap analysis.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer class="dashboard-footer">
+
+            <p>
+                SSAS — Assess • Analyze • Improve • Grow
+            </p>
+
+        </footer>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="../js/assessment.js"></script>
+
+</body>
+
+</html>

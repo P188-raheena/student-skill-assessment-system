@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - Recommendations</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="recommendations-page">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+            <div class="student-profile">
+                <span class="profile-icon">👤</span>
+                <span id="studentName">Student</span>
+
+                <button id="dashboardBtn">
+                    Dashboard
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- Main -->
+        <main class="recommendations-container">
+
+            <!-- Heading -->
+            <section class="recommendations-heading">
+
+                <p class="small-heading">
+                    PERSONALIZED RECOMMENDATIONS
+                </p>
+
+                <h1>
+                    Improve Your Skills
+                </h1>
+
+                <p>
+                    Based on your assessment, here are areas you can
+                    focus on to improve your technical skills.
+                </p>
+
+            </section>
+
+
+            <!-- Career Goal -->
+            <section class="recommendation-overview">
+
+                <div>
+                    <p class="card-label">
+                        YOUR CAREER GOAL
+                    </p>
+
+                    <h2 id="careerGoal">
+                        Not selected
+                    </h2>
+                </div>
+
+                <div>
+                    <p class="card-label">
+                        ASSESSMENT SCORE
+                    </p>
+
+                    <h2 id="assessmentScore">
+                        0%
+                    </h2>
+                </div>
+
+            </section>
+
+
+            <!-- Recommended Skills -->
+            <section class="recommendation-card">
+
+                <div class="recommendation-card-header">
+
+                    <div>
+                        <h2>🎯 Focus Areas</h2>
+
+                        <p>
+                            Skills that you should focus on improving.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="recommendation-list">
+
+                    <div class="recommendation-item">
+
+                        <div class="recommendation-number">
+                            1
+                        </div>
+
+                        <div>
+                            <h3>Data Structures</h3>
+
+                            <p>
+                                Practice arrays, strings, linked lists,
+                                stacks, queues and hashing.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommendation-item">
+
+                        <div class="recommendation-number">
+                            2
+                        </div>
+
+                        <div>
+                            <h3>Problem Solving</h3>
+
+                            <p>
+                                Solve coding problems regularly and
+                                improve your logical thinking.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommendation-item">
+
+                        <div class="recommendation-number">
+                            3
+                        </div>
+
+                        <div>
+                            <h3>Technical Concepts</h3>
+
+                            <p>
+                                Strengthen your understanding of important
+                                programming and computer science concepts.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Learning Plan -->
+            <section class="recommendation-card">
+
+                <div class="recommendation-card-header">
+
+                    <div>
+                        <h2>📚 Suggested Learning Plan</h2>
+
+                        <p>
+                            Follow these steps to improve your skills.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="learning-plan">
+
+                    <div class="learning-step">
+
+                        <span>01</span>
+
+                        <div>
+                            <h3>Learn the Concepts</h3>
+
+                            <p>
+                                Study the fundamentals of the skill
+                                you want to improve.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-step">
+
+                        <span>02</span>
+
+                        <div>
+                            <h3>Practice Problems</h3>
+
+                            <p>
+                                Solve beginner and intermediate problems
+                                related to the topic.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-step">
+
+                        <span>03</span>
+
+                        <div>
+                            <h3>Take Another Assessment</h3>
+
+                            <p>
+                                Reassess your skills after practicing
+                                to measure your improvement.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Actions -->
+            <section class="recommendation-actions">
+
+                <button
+                    class="secondary-btn"
+                    id="skillGapBtn">
+                    ← Skill Gap Analysis
+                </button>
+
+                <button
+                    class="primary-btn"
+                    id="progressBtn">
+                    View My Progress →
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            <p>
+                SSAS — Assess • Analyze • Improve • Grow
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="../js/recommendations.js"></script>
+
+</body>
+
+</html>

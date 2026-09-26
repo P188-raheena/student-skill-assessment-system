@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - Assessment Result</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="result-page">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+            <div class="student-profile">
+                <span class="profile-icon">👤</span>
+                <span id="studentName">Student</span>
+
+                <button id="dashboardBtn">
+                    Dashboard
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- Main -->
+        <main class="result-container">
+
+            <section class="result-heading">
+
+                <p class="small-heading">ASSESSMENT COMPLETED</p>
+
+                <h1>Your Assessment Result</h1>
+
+                <p>
+                    Here is a summary of your assessment performance.
+                </p>
+
+            </section>
+
+
+            <!-- Score -->
+            <section class="result-score-card">
+
+                <div class="score-circle">
+                    <span id="scorePercentage">0%</span>
+                </div>
+
+                <div class="score-details">
+
+                    <h2>Assessment Score</h2>
+
+                    <p id="scoreMessage">
+                        Your result is ready.
+                    </p>
+
+                    <div class="score-summary">
+
+                        <div>
+                            <strong id="correctAnswers">0</strong>
+                            <span>Correct</span>
+                        </div>
+
+                        <div>
+                            <strong id="totalQuestions">0</strong>
+                            <span>Total Questions</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Performance -->
+            <section class="result-card">
+
+                <div class="result-card-header">
+
+                    <div>
+                        <h2>📊 Performance Summary</h2>
+
+                        <p>
+                            Your current assessment performance.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="performance-grid">
+
+                    <div class="performance-item">
+                        <span>Overall Score</span>
+                        <strong id="overallScore">0%</strong>
+                    </div>
+
+                    <div class="performance-item">
+                        <span>Correct Answers</span>
+                        <strong id="correctSummary">0</strong>
+                    </div>
+
+                    <div class="performance-item">
+                        <span>Questions Attempted</span>
+                        <strong id="attemptedSummary">0</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Skill Gap -->
+            <section class="result-card">
+
+                <div class="result-card-header">
+
+                    <div>
+                        <h2>🧠 Skill Gap Analysis</h2>
+
+                        <p>
+                            Your detailed skill analysis will be generated
+                            from your assessment performance.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-gap-message">
+
+                    <div class="gap-icon">🔍</div>
+
+                    <div>
+                        <h3>Skill analysis</h3>
+
+                        <p>
+                            Your strengths and areas that need improvement
+                            will appear here after detailed analysis.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Recommendations -->
+            <section class="result-card">
+
+                <div class="result-card-header">
+
+                    <div>
+                        <h2>💡 Recommendations</h2>
+
+                        <p>
+                            Personalized recommendations will be based
+                            on your skill gaps.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="recommendation-placeholder">
+
+                    <span>💡</span>
+
+                    <p>
+                        Complete your assessment analysis to receive
+                        personalized learning recommendations.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Actions -->
+            <section class="result-actions">
+
+                <button
+                    class="secondary-btn"
+                    id="retakeBtn">
+                    Retake Assessment
+                </button>
+
+                <button
+                    class="primary-btn"
+                    id="dashboardActionBtn">
+                    Go to Dashboard →
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            <p>
+                SSAS — Assess • Analyze • Improve • Grow
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="../js/result.js"></script>
+
+</body>
+</html>

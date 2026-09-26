@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - Skill Gap Analysis</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="skill-gap-page">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="skill-gap-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+
+                <span id="studentName">Student</span>
+
+                <button class="header-btn" id="dashboardBtn">
+                    Dashboard
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="skill-gap-container">
+
+            <!-- Heading -->
+
+            <section class="page-heading">
+
+                <span class="heading-label">
+                    SKILL ANALYSIS
+                </span>
+
+                <h1>Skill Gap Analysis</h1>
+
+                <p>
+                    Understand your current strengths, identify areas that need improvement,
+                    and follow the recommended learning path.
+                </p>
+
+            </section>
+
+
+            <!-- ================= OVERALL SCORE ================= -->
+
+            <section class="overall-card">
+
+                <div class="overall-left">
+
+                    <div class="score-circle">
+
+                        <div>
+                            <strong id="overallScore">33%</strong>
+                            <span>Overall Score</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overall-content">
+
+                    <span class="section-label">
+                        ASSESSMENT PERFORMANCE
+                    </span>
+
+                    <h2 id="performanceTitle">
+                        Keep Improving
+                    </h2>
+
+                    <p id="performanceDescription">
+                        You have started building your skills. Focus on the
+                        areas where your performance is lower and practice regularly.
+                    </p>
+
+                    <div class="score-details">
+
+                        <div>
+                            <strong id="correctAnswers">4</strong>
+                            <span>Correct Answers</span>
+                        </div>
+
+                        <div>
+                            <strong id="totalQuestions">12</strong>
+                            <span>Total Questions</span>
+                        </div>
+
+                        <div>
+                            <strong id="improvementCount">2</strong>
+                            <span>Focus Areas</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= STRENGTHS / IMPROVEMENT ================= -->
+
+            <section class="two-column">
+
+
+                <!-- Strengths -->
+
+                <div class="analysis-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon strength-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h2>Your Strengths</h2>
+
+                            <p>
+                                Areas where you are performing relatively well.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div id="strengthList" class="skill-list">
+
+                        <!-- Java -->
+
+                        <div class="skill-row">
+
+                            <div class="skill-row-left">
+
+                                <div class="skill-symbol">
+                                    J
+                                </div>
+
+                                <div>
+                                    <h3>Java</h3>
+                                    <span>Current performance</span>
+                                </div>
+
+                            </div>
+
+                            <strong>33%</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Improvement Areas -->
+
+                <div class="analysis-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon improvement-icon">
+                            !
+                        </div>
+
+                        <div>
+                            <h2>Needs Improvement</h2>
+
+                            <p>
+                                Skills that require more practice and revision.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div id="improvementList" class="skill-list">
+
+                        <!-- Data Structures -->
+
+                        <div class="skill-row">
+
+                            <div class="skill-row-left">
+
+                                <div class="skill-symbol">
+                                    D
+                                </div>
+
+                                <div>
+                                    <h3>Data Structures</h3>
+                                    <span>Needs more practice</span>
+                                </div>
+
+                            </div>
+
+                            <strong>33%</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SKILL PERFORMANCE ================= -->
+
+            <section class="analysis-card performance-card">
+
+                <div class="card-heading">
+
+                    <div class="heading-icon">
+                        ▣
+                    </div>
+
+                    <div>
+                        <h2>Skill-wise Performance</h2>
+
+                        <p>
+                            Your performance in each assessed skill.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="performanceList" class="performance-list">
+
+                    <!-- Java -->
+
+                    <div class="performance-row">
+
+                        <div class="performance-top">
+
+                            <div class="skill-title">
+
+                                <div class="skill-symbol">
+                                    J
+                                </div>
+
+                                <span>Java</span>
+
+                            </div>
+
+                            <strong>33%</strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                style="width: 33%;">
+                            </div>
+
+                        </div>
+
+                        <div class="performance-status">
+                            Needs Improvement
+                        </div>
+
+                    </div>
+
+
+                    <!-- Data Structures -->
+
+                    <div class="performance-row">
+
+                        <div class="performance-top">
+
+                            <div class="skill-title">
+
+                                <div class="skill-symbol">
+                                    D
+                                </div>
+
+                                <span>Data Structures</span>
+
+                            </div>
+
+                            <strong>33%</strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                style="width: 33%;">
+                            </div>
+
+                        </div>
+
+                        <div class="performance-status">
+                            Needs Improvement
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= LEARNING FOCUS ================= -->
+
+            <section class="focus-card">
+
+                <div class="focus-icon">
+                    💡
+                </div>
+
+                <div class="focus-content">
+
+                    <span class="section-label">
+                        RECOMMENDED FOCUS
+                    </span>
+
+                    <h2 id="focusTitle">
+                        Strengthen your fundamentals
+                    </h2>
+
+                    <p id="focusDescription">
+                        Review the basic concepts of Java and Data Structures,
+                        then practice questions to improve your assessment performance.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= LEARNING PLAN ================= -->
+
+            <section class="analysis-card learning-card">
+
+                <div class="card-heading">
+
+                    <div class="heading-icon">
+                        →
+                    </div>
+
+                    <div>
+                        <h2>Suggested Learning Plan</h2>
+
+                        <p>
+                            A simple sequence to work on your skill gaps.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="learning-plan">
+
+                    <div class="learning-step">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div>
+                            <h3>Review Fundamentals</h3>
+
+                            <p>
+                                Revisit the basic concepts of the skills
+                                where your score is lower.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-step">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div>
+                            <h3>Practice Questions</h3>
+
+                            <p>
+                                Solve beginner and intermediate questions
+                                related to the identified skill gaps.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-step">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div>
+                            <h3>Take the Assessment Again</h3>
+
+                            <p>
+                                Reassess your skills after practicing and
+                                compare your new performance.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <section class="page-actions">
+
+                <button
+                    class="secondary-btn"
+                    id="backBtn">
+
+                    ← Back to Result
+
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    id="retakeBtn">
+
+                    Retake Assessment →
+
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="skill-gap-footer">
+
+            <p>
+                SSAS — Student Skill Assessment System
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="../js/skillgapanalysis.js"></script>
+
+</body>
+
+</html>

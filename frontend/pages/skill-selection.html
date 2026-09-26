@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS - Skill & Career Selection</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="selection-page">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+
+                <div>
+                    <h2>SSAS</h2>
+                    <p>Student Skill Assessment System</p>
+                </div>
+            </div>
+
+            <div class="student-profile">
+                <span class="profile-icon">👤</span>
+                <span id="studentName">Student</span>
+
+                <button id="backDashboardBtn">
+                    Dashboard
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- Main -->
+        <main class="selection-container">
+
+            <!-- Heading -->
+            <section class="selection-heading">
+
+                <p class="small-heading">
+                    SKILL & CAREER SELECTION
+                </p>
+
+                <h1>
+                    Choose your skills and career goal
+                </h1>
+
+                <p>
+                    Select the technical skills you want to assess
+                    and the career path you are interested in.
+                </p>
+
+            </section>
+
+
+            <!-- Career Selection -->
+            <section class="selection-card">
+
+                <div class="selection-card-header">
+
+                    <div>
+                        <h2>🎯 Career Goal</h2>
+
+                        <p>
+                            Select the career you want to prepare for.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <label class="career-option">
+                        <input
+                            type="radio"
+                            name="career"
+                            value="Java Backend Developer">
+
+                        <div class="career-content">
+                            <span class="career-icon">☕</span>
+
+                            <div>
+                                <h3>Java Backend Developer</h3>
+                                <p>Java, APIs, databases and backend development</p>
+                            </div>
+                        </div>
+                    </label>
+
+
+                    <label class="career-option">
+                        <input
+                            type="radio"
+                            name="career"
+                            value="Web Developer">
+
+                        <div class="career-content">
+                            <span class="career-icon">🌐</span>
+
+                            <div>
+                                <h3>Web Developer</h3>
+                                <p>HTML, CSS, JavaScript and web development</p>
+                            </div>
+                        </div>
+                    </label>
+
+
+                    <label class="career-option">
+                        <input
+                            type="radio"
+                            name="career"
+                            value="Data Analyst">
+
+                        <div class="career-content">
+                            <span class="career-icon">📊</span>
+
+                            <div>
+                                <h3>Data Analyst</h3>
+                                <p>Data analysis, SQL and visualization</p>
+                            </div>
+                        </div>
+                    </label>
+
+
+                    <label class="career-option">
+                        <input
+                            type="radio"
+                            name="career"
+                            value="AI/ML Engineer">
+
+                        <div class="career-content">
+                            <span class="career-icon">🤖</span>
+
+                            <div>
+                                <h3>AI / ML Engineer</h3>
+                                <p>Machine learning, data and AI concepts</p>
+                            </div>
+                        </div>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- Skills -->
+            <section class="selection-card">
+
+                <div class="selection-card-header">
+
+                    <div>
+                        <h2>🧠 Technical Skills</h2>
+
+                        <p>
+                            Select the skills you want to assess.
+                        </p>
+                    </div>
+
+                    <span id="selectedCount">
+                        0 selected
+                    </span>
+
+                </div>
+
+
+                <div class="skills-grid">
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Java">
+                        <span>Java</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Data Structures">
+                        <span>Data Structures</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Algorithms">
+                        <span>Algorithms</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="HTML">
+                        <span>HTML</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="CSS">
+                        <span>CSS</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="JavaScript">
+                        <span>JavaScript</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="SQL">
+                        <span>SQL</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="DBMS">
+                        <span>DBMS</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Computer Networks">
+                        <span>Computer Networks</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Operating Systems">
+                        <span>Operating Systems</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Python">
+                        <span>Python</span>
+                    </label>
+
+
+                    <label class="skill-option">
+                        <input type="checkbox" value="Machine Learning">
+                        <span>Machine Learning</span>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- Selection Summary -->
+            <section class="selection-summary">
+
+                <div>
+                    <h2>Ready to assess?</h2>
+
+                    <p>
+                        Select at least one skill and a career goal
+                        to continue.
+                    </p>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    id="continueAssessmentBtn">
+
+                    Continue to Assessment →
+
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            <p>
+                SSAS — Assess • Analyze • Improve • Grow
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="../js/skill-selection.js"></script>
+
+</body>
+</html>
