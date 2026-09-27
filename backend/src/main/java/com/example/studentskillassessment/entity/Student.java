@@ -15,9 +15,16 @@ public class Student {
     private Long id;
 
     private String name;
+
     private String email;
+
     private String branch;
+
     private Integer year;
+
+    private String password;
+
+    private String role;
 
     public Student() {
     }
@@ -67,5 +74,21 @@ public class Student {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
