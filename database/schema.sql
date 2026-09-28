@@ -11,7 +11,9 @@ CREATE TABLE students (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     branch VARCHAR(255),
-    year INT
+    year INT,
+    password VARCHAR(255),
+    role VARCHAR(255)
 );
 
 -- =========================================
