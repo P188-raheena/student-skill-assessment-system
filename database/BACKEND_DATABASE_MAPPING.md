@@ -1,16 +1,12 @@
 # Backend ↔ Database Mapping
 
-This document explains how the Spring Boot backend should map to the MySQL database.
+This document explains how the Spring Boot backend maps to the MySQL database.
 
 ## Database
 
-Database name:
+**Database name:** `student_skill_assessment`
 
-student_skill_assessment
-
-Database technology:
-
-MySQL
+**Database technology:** MySQL
 
 ---
 
@@ -18,17 +14,23 @@ MySQL
 
 ### Database table
 
-students
+`students`
 
 ### Columns
 
 | Database Column | Java Field | Notes |
 |---|---|---|
-| student_id | id | Primary Key |
+| id | id | Primary Key |
 | name | name | Student name |
 | email | email | Unique email |
+| branch | branch | Student branch |
+| year | year | Student year |
+| password | password | Encoded student password |
+| role | role | Student role, e.g. `STUDENT` |
 
-The Java `id` field should map to `student_id`.
+The Java `id` field maps to `students.id`.
+
+The email is unique and is used for student authentication.
 
 ---
 
@@ -36,19 +38,15 @@ The Java `id` field should map to `student_id`.
 
 ### Database table
 
-skills
+`skills`
 
 ### Columns
 
 | Database Column | Java Field | Notes |
 |---|---|---|
-| skill_id | id | Primary Key |
-| skill_name | name | Skill name |
+| id | id | Primary Key |
+| name | name | Unique skill name |
 | description | description | Skill description |
-
-The Java `id` field should map to `skill_id`.
-
-The Java `name` field should map to `skill_name`.
 
 ---
 
@@ -56,23 +54,18 @@ The Java `name` field should map to `skill_name`.
 
 ### Database table
 
-assessments
+`assessments`
 
 ### Columns
 
 | Database Column | Java Field | Notes |
 |---|---|---|
-| assessment_id | id | Primary Key |
-| assessment_name | assessmentName/title | Assessment name |
-| skill_id | skill | Foreign Key → skills.skill_id |
+| id | id | Primary Key |
+| title | title | Unique assessment title |
+| description | description | Assessment description |
+| total_questions | totalQuestions | Number of questions |
 
-Each assessment belongs to one skill.
-
-Relationship:
-
-Assessment → Skill
-
-Many assessments can belong to a skill.
+An assessment contains multiple questions.
 
 ---
 
@@ -80,113 +73,76 @@ Many assessments can belong to a skill.
 
 ### Database table
 
-questions
+`questions`
 
 ### Columns
 
 | Database Column | Java Field | Notes |
 |---|---|---|
-| question_id | id | Primary Key |
-| assessment_id | assessment | Foreign Key → assessments.assessment_id |
+| id | id | Primary Key |
+| assessment_id | assessment | Foreign Key → assessments.id |
 | question_text | questionText | Question text |
 | option_a | optionA | Option A |
 | option_b | optionB | Option B |
 | option_c | optionC | Option C |
 | option_d | optionD | Option D |
-| correct_option | correctOption/correctAnswer | Correct option |
+| correct_answer | correctAnswer | Correct option |
+| skill_id | skill | Foreign Key → skills.id |
+| question_number | questionNumber | Question number within assessment |
 
-Each question belongs to one assessment.
-
-Relationship:
-
-Question → Assessment
+Each question belongs to one assessment and one skill.
 
 ---
 
-## 5. Assessment Attempt
+## 5. Assessment Answer
 
 ### Database table
 
-assessment_attempts
-
-### Required backend entity
-
-AssessmentAttempt
+`assessment_answers`
 
 ### Columns
 
 | Database Column | Java Field | Notes |
 |---|---|---|
-| attempt_id | id | Primary Key |
-| student_id | student | Foreign Key → students.student_id |
-| assessment_id | assessment | Foreign Key → assessments.assessment_id |
-| started_at | startedAt | Attempt start time |
-| submitted_at | submittedAt | Attempt submission time |
+| id | id | Primary Key |
+| student_id | student | Foreign Key → students.id |
+| assessment_id | assessment | Foreign Key → assessments.id |
+| question_id | question | Foreign Key → questions.id |
+| selected_answer | selectedAnswer | Student's selected option |
+| correct | correct | Whether the selected answer is correct |
 
-This table supports multiple attempts.
-
-Example:
-
-Student → Java Assessment → Attempt 1
-
-Student → Java Assessment → Attempt 2
-
-Student → Java Assessment → Attempt 3
-
----
-
-## 6. Answer
-
-### Database table
-
-answers
-
-### Columns
-
-| Database Column | Java Field | Notes |
-|---|---|---|
-| answer_id | id | Primary Key |
-| attempt_id | attempt | Foreign Key → assessment_attempts.attempt_id |
-| question_id | question | Foreign Key → questions.question_id |
-| selected_option | selectedOption | Student's selected option |
-| is_correct | isCorrect | Whether the answer is correct |
-
-Constraint:
-
-One question can have only one answer within a particular attempt.
+A student can have only one answer for a particular question in a particular assessment.
 
 Unique key:
 
-(attempt_id, question_id)
+`(student_id, assessment_id, question_id)`
 
 ---
 
-## 7. Result
+## 6. Result
 
 ### Database table
 
-results
+`results`
 
 ### Columns
 
 | Database Column | Java Field | Notes |
 |---|---|---|
-| result_id | id | Primary Key |
-| attempt_id | attempt | Foreign Key → assessment_attempts.attempt_id |
-| total_questions | totalQuestions | Total questions |
-| correct_answers | correctAnswers | Correct answers |
-| score | score | Score |
-| percentage | percentage | Percentage |
+| id | id | Primary Key |
+| student_id | student | Foreign Key → students.id |
+| assessment_id | assessment | Foreign Key → assessments.id |
+| score | score | Assessment score |
+| total_questions | totalQuestions | Total questions answered |
+| correct_answers | correctAnswers | Number of correct answers |
+| incorrect_answers | incorrectAnswers | Number of incorrect answers |
+| percentage | percentage | Percentage score |
 
-Each assessment attempt has one result.
+A student can have only one result for each assessment.
 
-The `attempt_id` column is unique in the `results` table, so an assessment attempt cannot have more than one result.
+Unique key:
 
-Relationship:
-
-AssessmentAttempt → Result
-
-One assessment attempt has at most one result.
+`(student_id, assessment_id)`
 
 ---
 
@@ -197,47 +153,26 @@ Student
    |
    | 1 : Many
    ↓
-AssessmentAttempt
+AssessmentAnswer
    |
-   ├──────────────→ Answer
+   ├──────────────→ Assessment
    |
-   └──────────────→ Result
+   └──────────────→ Question
 
 
-Skill
+Student
    |
    | 1 : Many
    ↓
+Result
+   |
+   └──────────────→ Assessment
+
+
 Assessment
    |
    | 1 : Many
    ↓
----
-
-# Database Validation Constraints
-
-The database includes constraints to protect data integrity.
-
-## Assessment
-
-- The combination of `skill_id` and `assessment_name` must be unique.
-- This prevents duplicate assessment names under the same skill.
-
-## Question
-
-- `correct_option` must be one of `A`, `B`, `C`, or `D`.
-
-## Answer
-
-- `selected_option` must be one of `A`, `B`, `C`, or `D`.
-- The combination of `attempt_id` and `question_id` must be unique.
-
-## Result
-
-- `total_questions` cannot be negative.
-- `correct_answers` cannot be negative.
-- `correct_answers` cannot be greater than `total_questions`.
-- `score` cannot be negative.
-- `percentage` must be between `0` and `100`.
-
-These constraints help prevent invalid data from being stored in the database.
+Question
+   |
+   └──────────────→ Skill
